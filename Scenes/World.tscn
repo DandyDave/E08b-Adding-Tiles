@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Scripts/paddle.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Paddle.gd" type="Script" id=1]
 [ext_resource path="res://Assets/paddle.png" type="Texture" id=2]
-[ext_resource path="res://Assets/ball.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/ball.gd" type="Script" id=3]
+[ext_resource path="res://Assets/ball.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Tile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Tile.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/tile.gd" type="Script" id=7]
+[ext_resource path="res://Assets/tile_gray.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 53.311, 12.2888 )
@@ -14,9 +19,13 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id=3]
 radius = 12.018
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 30, 16 )
+
 [node name="World" type="Node"]
 
 [node name="Paddle" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 512, 544 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -30,24 +39,304 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2( 512, 480 )
+position = Vector2( 512, 476 )
 mode = 2
 physics_material_override = SubResource( 2 )
 gravity_scale = 0.0
 linear_velocity = Vector2( 200, -200 )
 linear_damp = 0.0
 angular_damp = 0.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="Ball"]
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource( 3 )
 
 [node name="Wall" type="StaticBody2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
 polygon = PoolVector2Array( 0, 640, 0, 0, 1024, 0, 1024, 640, 1088, 640, 1088, -64, -64, -64, -64, 640, 0, 640 )
+
+[node name="Tiles" type="Node" parent="."]
+
+[node name="Gray Tiles" type="Node" parent="Tiles"]
+
+[node name="Tile" parent="Tiles/Gray Tiles" instance=ExtResource( 5 )]
+script = ExtResource( 6 )
+
+[node name="Tile2" type="StaticBody2D" parent="Tiles/Gray Tiles" groups=[
+"Tilles",
+]]
+editor/display_folded = true
+position = Vector2( 816, 340 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Tiles/Gray Tiles/Tile2"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Gray Tiles/Tile2"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tile3" type="StaticBody2D" parent="Tiles/Gray Tiles" groups=[
+"Tilles",
+]]
+editor/display_folded = true
+position = Vector2( 712, 340 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Tiles/Gray Tiles/Tile3"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Gray Tiles/Tile3"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tile4" type="StaticBody2D" parent="Tiles/Gray Tiles" groups=[
+"Tilles",
+]]
+editor/display_folded = true
+position = Vector2( 610, 340 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Tiles/Gray Tiles/Tile4"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Gray Tiles/Tile4"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tile5" type="StaticBody2D" parent="Tiles/Gray Tiles" groups=[
+"Tilles",
+]]
+editor/display_folded = true
+position = Vector2( 510, 340 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Tiles/Gray Tiles/Tile5"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Gray Tiles/Tile5"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tile6" type="StaticBody2D" parent="Tiles/Gray Tiles" groups=[
+"Tilles",
+]]
+editor/display_folded = true
+position = Vector2( 408, 340 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Tiles/Gray Tiles/Tile6"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Gray Tiles/Tile6"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tile7" type="StaticBody2D" parent="Tiles/Gray Tiles" groups=[
+"Tilles",
+]]
+editor/display_folded = true
+position = Vector2( 306, 340 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Tiles/Gray Tiles/Tile7"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Gray Tiles/Tile7"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tile8" type="StaticBody2D" parent="Tiles/Gray Tiles" groups=[
+"Tilles",
+]]
+editor/display_folded = true
+position = Vector2( 204, 340 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Tiles/Gray Tiles/Tile8"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Gray Tiles/Tile8"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tile9" type="StaticBody2D" parent="Tiles/Gray Tiles" groups=[
+"Tilles",
+]]
+editor/display_folded = true
+position = Vector2( 102, 340 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Tiles/Gray Tiles/Tile9"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Gray Tiles/Tile9"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Red Tiles" type="Node" parent="Tiles"]
+editor/display_folded = true
+
+[node name="Tile" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 102, 272 )
+
+[node name="Tile2" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 918, 272 )
+
+[node name="Tile3" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 816, 272 )
+
+[node name="Tile4" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 714, 272 )
+
+[node name="Tile5" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 612, 272 )
+
+[node name="Tile6" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 512, 272 )
+
+[node name="Tile7" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 408, 272 )
+
+[node name="Tile8" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 306, 272 )
+
+[node name="Tile9" parent="Tiles/Red Tiles" instance=ExtResource( 5 )]
+position = Vector2( 204, 272 )
+
+[node name="Blue Tilles" type="Node" parent="Tiles"]
+
+[node name="Tile" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 918, 204 )
+
+[node name="Tile2" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 816, 204 )
+
+[node name="Tile3" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 712, 204 )
+
+[node name="Tile4" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 610, 204 )
+
+[node name="Tile5" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 510, 204 )
+
+[node name="Tile6" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 408, 204 )
+
+[node name="Tile7" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 306, 204 )
+
+[node name="Tile8" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 204, 204 )
+
+[node name="Tile9" parent="Tiles/Blue Tilles" instance=ExtResource( 5 )]
+position = Vector2( 102, 204 )
+
+[node name="Green Tiles" type="Node" parent="Tiles"]
+editor/display_folded = true
+
+[node name="Tile" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 918, 136 )
+
+[node name="Tile2" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 816, 136 )
+
+[node name="Tile3" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 712, 136 )
+
+[node name="Tile4" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 612, 136 )
+
+[node name="Tile5" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 510, 136 )
+
+[node name="Tile6" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 408, 136 )
+
+[node name="Tile7" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 306, 136 )
+
+[node name="Tile8" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 204, 136 )
+
+[node name="Tile9" parent="Tiles/Green Tiles" instance=ExtResource( 5 )]
+position = Vector2( 102, 136 )
+
+[node name="Purple Tiles" type="Node" parent="Tiles"]
+editor/display_folded = true
+
+[node name="Tile" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 816, 68 )
+
+[node name="Tile2" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 714, 68 )
+
+[node name="Tile3" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 612, 68 )
+
+[node name="Tile4" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 510, 68 )
+
+[node name="Tile5" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 408, 68 )
+
+[node name="Tile6" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 306, 68 )
+
+[node name="Tile7" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 204, 68 )
+
+[node name="Tile8" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 102, 68 )
+
+[node name="Tile9" parent="Tiles/Purple Tiles" instance=ExtResource( 5 )]
+position = Vector2( 918, 68 )
